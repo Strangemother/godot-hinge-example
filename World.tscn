@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Cube.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 0.1, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 2, 0.2, 1 )
+
+[node name="World" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Gate2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41631, 2.51869, 0 )
+
+[node name="Static" parent="Gate2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304117, 0 )
+
+[node name="HingeJoint" type="HingeJoint" parent="Gate2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06604, 0.177318, 0 )
+nodes/node_a = NodePath("../Static")
+nodes/node_b = NodePath("../RigidBody")
+angular_limit/enable = true
+motor/max_impulse = 0.16
+
+[node name="RigidBody" type="RigidBody" parent="Gate2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014067, 0.069142, 0 )
+can_sleep = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate2/RigidBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate2/RigidBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Gate" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.434055, 0 )
+
+[node name="Static" parent="Gate" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304117, 0 )
+
+[node name="HingeJoint" type="HingeJoint" parent="Gate"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06604, 0.177318, 0 )
+nodes/node_a = NodePath("../Static")
+nodes/node_b = NodePath("../RigidBody")
+motor/enable = true
+motor/max_impulse = 0.16
+
+[node name="RigidBody" type="RigidBody" parent="Gate"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014067, 0.069142, 0 )
+can_sleep = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate/RigidBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate/RigidBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Gate3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31994, 2.51869, 0 )
+
+[node name="Static" parent="Gate3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.304117, 0 )
+
+[node name="HingeJoint" type="HingeJoint" parent="Gate3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06604, 0.177318, 0 )
+nodes/node_a = NodePath("../Static")
+nodes/node_b = NodePath("../RigidBody")
+motor/max_impulse = 0.16
+
+[node name="RigidBody" type="RigidBody" parent="Gate3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014067, 0.069142, 0 )
+can_sleep = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Gate3/RigidBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Gate3/RigidBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.634955, 4.50195 )
+current = true
